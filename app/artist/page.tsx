@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Music, Plus, ArrowLeft } from "lucide-react"
 
 export default async function ArtistDashboardPage() {
-  const supabase = await createClient()
+  const supabase = await supabase)
 
   const {
     data: { user },

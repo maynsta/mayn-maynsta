@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import AccountSections from "./sections"
 
 export default async function AccountPage() {
-  const supabase = await createClient()
+  const supabase = await supabase)
 
   const {
     data: { user },

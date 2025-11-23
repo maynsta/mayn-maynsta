@@ -2925,7 +2925,7 @@ class StorageClient extends __TURBOPACK__imported__module__$5b$project$5d2f$mayn
      * @returns A StorageAnalyticsApi instance configured with the current storage settings.
      * @example
      * ```typescript
-     * const client = createClient(url, key)
+     * const client = supabaseurl, key)
      * const analytics = client.storage.analytics
      *
      * // Create an analytics bucket

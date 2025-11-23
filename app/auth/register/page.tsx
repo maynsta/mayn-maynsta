@@ -38,7 +38,7 @@ export default function RegisterPage() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = createClient()
+    const supabase = supabase)
     setIsLoading(true)
     setError(null)
 
@@ -75,7 +75,7 @@ export default function RegisterPage() {
   }
 
   const handleGoogleRegister = async () => {
-    const supabase = createClient()
+    const supabase = supabase)
     setIsLoading(true)
     setError(null)
 

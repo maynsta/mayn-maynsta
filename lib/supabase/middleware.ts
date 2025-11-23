@@ -9,7 +9,7 @@ export async function updateSession(request: NextRequest) {
     throw new Error("Supabase URL or Key is not set in environment variables")
   }
 
-  const supabase = createClient(supabaseUrl, supabaseKey, {
+  const supabase = supabasesupabaseUrl, supabaseKey, {
     auth: { persistSession: false }
   })
 

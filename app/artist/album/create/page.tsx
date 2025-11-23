@@ -25,7 +25,7 @@ export default function CreateAlbumPage() {
     setError(null)
 
     try {
-      const supabase = createClient()
+      const supabase = supabase)
       const {
         data: { user },
       } = await supabase.auth.getUser()

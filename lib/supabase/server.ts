@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 
-export async function createClient() {
+export async function supabase) {
   // In Next.js 16 ist cookies() jetzt asynchron
   const cookieStore = await cookies();
 
