@@ -1,9 +1,8 @@
-cat > lib/supabase/supabaseServer.ts << 'EOF'
-import { createServerClient } from "@supabase/ssr"
-import { cookies } from "next/headers"
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
 
 export function supabaseServer() {
-  const cookieStore = cookies()
+  const cookieStore = cookies();
 
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -11,13 +10,13 @@ export function supabaseServer() {
     {
       cookies: {
         get(name: string) {
-          return cookieStore.get(name)?.value
+          return cookieStore.get(name)?.value;
         },
-        set() { /* ignore */ },
-        remove() { /* ignore */ }
-      }
+        set() {},
+        remove() {},
+      },
     }
-  )
+  );
 }
-EOF
+
 
