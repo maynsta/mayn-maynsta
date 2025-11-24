@@ -99,7 +99,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/home/gem",
+    "outputFileTracingRoot": "/home/gem/maynsta-one",
     "cacheComponents": false,
     "cacheLife": {
       "default": {
@@ -290,12 +290,12 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.mjs",
     "turbopack": {
-      "root": "/home/gem"
+      "root": "/home/gem/maynsta-one"
     },
     "distDirRoot": ".next"
   },
   "appDir": "/home/gem/maynsta-one/mayn-maynsta",
-  "relativeAppDir": "maynsta-one/mayn-maynsta",
+  "relativeAppDir": "mayn-maynsta",
   "files": [
     ".next/routes-manifest.json",
     ".next/server/pages-manifest.json",
