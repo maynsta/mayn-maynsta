@@ -1,14 +1,15 @@
 "use client"
 
 import type React from "react"
-
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser" // ✅ Supabase Import
 
 export default function UpdatePasswordPage() {
   const [password, setPassword] = useState("")
@@ -19,8 +20,6 @@ export default function UpdatePasswordPage() {
 
   const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-const supabase = supabaseBrowser
     setIsLoading(true)
     setError(null)
 
@@ -37,8 +36,8 @@ const supabase = supabaseBrowser
     }
 
     try {
-      const { error } = await supabase.auth.updateUser({
-        password: password,
+      const { error } = await supabaseBrowser.auth.updateUser({
+        password,
       })
       if (error) throw error
       router.push("/auth/login")
@@ -92,3 +91,4 @@ const supabase = supabaseBrowser
     </div>
   )
 }
+

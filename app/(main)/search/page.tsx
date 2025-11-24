@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { SearchIcon, Play, MoreVertical } from "lucide-react";
-
 import { Card, CardContent } from "@/components/ui/card";
 import { usePlayer } from "@/hooks/use-player";
 import {
@@ -15,16 +14,30 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"; // ✅ Supabase Import
+
+interface Song {
+  id: string;
+  title: string;
+  artist_id?: string | null;
+  is_published?: boolean;
+  audio_url?: string | null;
+}
+
+interface Playlist {
+  id: string;
+  name: string;
+}
 
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [songs, setSongs] = useState<any[]>([]);
+  const [songs, setSongs] = useState<Song[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [playlists, setPlaylists] = useState<any[]>([]);
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const { setSong } = usePlayer();
   const router = useRouter();
 
-  // 🔍 Songs laden
+  // 🔍 Songs laden (mit Debounce)
   useEffect(() => {
     const fetchSongs = async () => {
       if (!searchQuery.trim()) {
@@ -33,18 +46,27 @@ export default function SearchPage() {
       }
 
       setIsLoading(true);
-      const { data: { user } } = await supabase.auth.getUser();
 
-      let query = supabase.from("songs").select("*").ilike("title", `%${searchQuery}%`);
-      query = user
-        ? query.or(`is_published.eq.true,artist_id.eq.${user.id}`)
-        : query.eq("is_published", true);
+      try {
+        const { data: { user } } = await supabaseBrowser.auth.getUser();
 
-      const { data, error } = await query;
-      if (error) toast.error("Fehler beim Laden der Songs");
-      else setSongs(data || []);
+        let query = supabaseBrowser.from("songs").select("*").ilike("title", `%${searchQuery}%`);
+        query = user
+          ? query.or(`is_published.eq.true,artist_id.eq.${user.id}`)
+          : query.eq("is_published", true);
 
-      setIsLoading(false);
+        const { data, error } = await query;
+        if (error) {
+          toast.error("Fehler beim Laden der Songs");
+        } else {
+          setSongs(data || []);
+        }
+      } catch (err) {
+        console.error(err);
+        toast.error("Fehler beim Laden der Songs");
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     const t = setTimeout(fetchSongs, 400);
@@ -54,20 +76,25 @@ export default function SearchPage() {
   // 📂 Playlists laden
   useEffect(() => {
     const loadPlaylists = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-      const { data } = await supabase.from("playlists").select("*").eq("user_id", user.id);
-      setPlaylists(data || []);
+      try {
+        const { data: { user } } = await supabaseBrowser.auth.getUser();
+        if (!user) return;
+
+        const { data } = await supabaseBrowser.from("playlists").select("*").eq("user_id", user.id);
+        setPlaylists(data || []);
+      } catch (err) {
+        console.error("Fehler beim Laden der Playlists:", err);
+      }
     };
     loadPlaylists();
   }, []);
 
   // 🎵 Add to Library
-  const handleAddToLibrary = async (song: any) => {
-    const { data: { user } } = await supabase.auth.getUser();
+  const handleAddToLibrary = async (song: Song) => {
+    const { data: { user } } = await supabaseBrowser.auth.getUser();
     if (!user) return toast.error("Bitte einloggen!");
 
-    const { error } = await supabase.from("library").upsert({
+    const { error } = await supabaseBrowser.from("library").upsert({
       user_id: user.id,
       song_id: song.id,
     });
@@ -77,19 +104,18 @@ export default function SearchPage() {
   };
 
   // ➕ Add to Playlist
-  const handleAddToPlaylist = async (song: any, playlistId: string) => {
-    const { error } = await supabase.from("playlist_songs").upsert({
+  const handleAddToPlaylist = async (song: Song, playlistId: string) => {
+    const { error } = await supabaseBrowser.from("playlist_songs").upsert({
       playlist_id: playlistId,
       song_id: song.id,
     });
+
     if (error) toast.error("Fehler beim Hinzufügen zur Playlist");
     else toast.success("Song zur Playlist hinzugefügt");
   };
 
   // 🆕 Neue Playlist erstellen
-  const handleCreatePlaylist = () => {
-    router.push("/library/create");
-  };
+  const handleCreatePlaylist = () => router.push("/library/create");
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-black p-6">
@@ -137,6 +163,7 @@ export default function SearchPage() {
                         <MoreVertical className="w-5 h-5 text-white" />
                       </button>
                     </DropdownMenuTrigger>
+
                     <DropdownMenuContent className="bg-neutral-800 border border-neutral-700 text-white w-52">
                       <DropdownMenuItem
                         className="hover:bg-neutral-700 cursor-pointer"

@@ -1,14 +1,15 @@
 "use client"
 
 import type React from "react"
-
+import { useState } from "react"
+import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import Link from "next/link"
-import { useState } from "react"
+
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser" // ✅ Supabase Import
 
 export default function ResetPasswordPage() {
   const [email, setEmail] = useState("")
@@ -18,14 +19,12 @@ export default function ResetPasswordPage() {
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-const supabase = supabaseBrowser
     setIsLoading(true)
     setError(null)
     setSuccess(false)
 
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error } = await supabaseBrowser.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth/update-password`,
       })
       if (error) throw error
@@ -91,3 +90,4 @@ const supabase = supabaseBrowser
     </div>
   )
 }
+

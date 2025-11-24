@@ -1,99 +1,103 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react"
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"
+import { SongCard } from "@/components/song-card"
 
-import { Card, CardContent } from "@/components/ui/card";
-import { ListMusic, Plus } from "lucide-react";
-import CreatePlaylistButton from "@/components/CreatePlaylistButton";
+interface Song {
+  id: string
+  title: string
+  artist_id?: string | null
+  cover_image_url?: string | null
+  audio_url?: string | null
+}
 
-export default function LibraryPage() {
-  const [playlists, setPlaylists] = useState<any[]>([]);
-  const [showCreate, setShowCreate] = useState(false); // Toggle Input-Feld
-  const [playlistName, setPlaylistName] = useState("");
-  const [userId, setUserId] = useState<string | null>(null);
-  const router = useRouter(); // ← hinzugefügt
-
-  // 🔑 Aktuellen User holen
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (user) setUserId(user.id);
-    };
-    fetchUser();
-  }, []);
-
-  // 📂 Playlists laden
-  const loadPlaylists = async (id: string) => {
-    const { data } = await supabase
-      .from("playlists")
-      .select("*")
-      .eq("user_id", id)
-      .order("created_at", { ascending: false });
-    setPlaylists(data || []);
-  };
+export default function HomePage() {
+  const [recentSongs, setRecentSongs] = useState<Song[]>([])
+  const [loadingRecent, setLoadingRecent] = useState(true)
 
   useEffect(() => {
-    if (userId) loadPlaylists(userId);
-  }, [userId]);
+    const loadRecent = async () => {
+      try {
+        // Aktuellen User holen
+        const {
+          data: { user },
+          error: userError,
+        } = await supabaseBrowser.auth.getUser()
+        if (userError || !user) {
+          console.warn("Kein eingeloggter User:", userError?.message)
+          setRecentSongs([])
+          return
+        }
+
+        // Zuletzt gespielte Songs laden (max. 5)
+        const { data, error } = await supabaseBrowser
+          .from("recently_played")
+          .select(`
+            songs (
+              id,
+              title,
+              artist_id,
+              cover_image_url,
+              audio_url
+            )
+          `)
+          .eq("user_id", user.id)
+          .order("played_at", { ascending: false })
+          .limit(5)
+
+        if (error) throw error
+
+        const extracted = data?.map((item: any) => item.songs).filter((s: Song | null) => s !== null)
+        setRecentSongs(extracted || [])
+      } catch (err: unknown) {
+        console.error("Fehler beim Laden der zuletzt gespielten Songs:", err)
+        setRecentSongs([])
+      } finally {
+        setLoadingRecent(false)
+      }
+    }
+
+    loadRecent()
+  }, [])
 
   return (
-    <div className="p-6 min-h-screen bg-neutral-900 text-white">
-      <h1 className="text-2xl font-bold mb-4">Library</h1>
+    <div className="h-full">
+      <div className="bg-gradient-to-b from-neutral-900 to-black p-6 space-y-8">
+        <h1 className="text-4xl font-bold text-white">Home</h1>
 
-      {/* ➕ Toggle Button für Create-Feld */}
-      {userId && (
-        <div className="mb-6">
-          {!showCreate ? (
-            <button
-              onClick={() => setShowCreate(true)}
-              className="w-10 h-10 flex items-center justify-center bg-white text-black rounded-full"
-            >
-              <Plus />
-            </button>
+        {/* Neu Section */}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-4">Neu</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            <SongCard title="Song 1" />
+            <SongCard title="Song 2" />
+          </div>
+        </section>
+
+        {/* Zuletzt gehört Section */}
+        <section>
+          <h2 className="text-2xl font-bold text-white mb-4">Zuletzt gehört</h2>
+          {loadingRecent ? (
+            <p className="text-white">Lade zuletzt gespielte Songs...</p>
+          ) : recentSongs.length === 0 ? (
+            <p className="text-white">Keine zuletzt gespielten Songs.</p>
           ) : (
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Neue Playlist"
-                value={playlistName}
-                onChange={(e) => setPlaylistName(e.target.value)}
-                className="border p-2 rounded-full w-full text-white bg-neutral-800"
-              />
-              <CreatePlaylistButton
-                playlistName={playlistName}
-                userId={userId}
-                onCreated={() => {
-                  setPlaylistName("");
-                  setShowCreate(false); // Input ausblenden nach Create
-                  loadPlaylists(userId);
-                }}
-              />
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+              {recentSongs.map((song) => (
+                <SongCard
+                  key={song.id}
+                  title={song.title}
+                  cover={song.cover_image_url ?? undefined}
+                  artist={song.artist_id ?? undefined}
+                  audio={song.audio_url ?? undefined}
+                />
+              ))}
             </div>
           )}
-        </div>
-      )}
-
-      {/* 📂 Playlists anzeigen */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {playlists.length > 0 ? (
-          playlists.map((pl) => (
-            <Card
-              key={pl.id}
-              className="bg-neutral-800 hover:bg-neutral-700 transition cursor-pointer"
-              onClick={() => router.push(`/library/${pl.id}`)} // ← klickbar
-            >
-              <CardContent className="flex items-center gap-2">
-                <ListMusic className="w-6 h-6" />
-                <p className="font-semibold text-white">{pl.name}</p> {/* ← Name weiß */}
-              </CardContent>
-            </Card>
-          ))
-        ) : (
-          <p className="text-neutral-400">Keine Playlists vorhanden.</p>
-        )}
+        </section>
       </div>
     </div>
-  );
+  )
 }
 

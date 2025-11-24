@@ -1,54 +1,57 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"; // <- unbedingt importieren
 
 export default function CreateArtistAccountPage() {
-  const [artistName, setArtistName] = useState("")
-  const [bio, setBio] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
+  const [artistName, setArtistName] = useState("");
+  const [bio, setBio] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-const supabase = supabaseBrowser
-    setIsLoading(true)
-    setError(null)
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
     try {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      if (!user) throw new Error("Nicht angemeldet")
+      const supabase = supabaseBrowser;
 
-      const { error } = await supabase.from("artist_accounts").insert({
+      // User abrufen
+      const { data: userData } = await supabase.auth.getUser();
+      const user = userData?.user;
+      if (!user) throw new Error("Nicht angemeldet");
+
+      // Künstlerkonto erstellen
+      const { error: insertError } = await supabase.from("artist_accounts").insert({
         user_id: user.id,
         artist_name: artistName,
         bio: bio || null,
-      })
+      });
 
-      if (error) throw error
+      if (insertError) throw insertError;
 
-      router.push("/artist")
-      router.refresh()
-    } catch (error) {
-      setError(error instanceof Error ? error.message : "Fehler beim Erstellen")
+      router.push("/artist");
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Fehler beim Erstellen");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-black p-6">
@@ -107,5 +110,6 @@ const supabase = supabaseBrowser
         </Card>
       </div>
     </div>
-  )
+  );
 }
+

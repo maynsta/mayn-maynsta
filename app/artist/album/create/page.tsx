@@ -1,62 +1,65 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-import { useRouter } from "next/navigation"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"; // <- wichtig
 
 export default function CreateAlbumPage() {
-  const [title, setTitle] = useState("")
-  const [releaseDate, setReleaseDate] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
+  const [title, setTitle] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setError(null)
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
     try {
-      
-const supabase = supabaseBrowser
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-      if (!user) throw new Error("Nicht angemeldet")
+      const supabase = supabaseBrowser;
 
-      // Get artist account
-      const { data: artistAccount } = await supabase
+      // User abrufen
+      const { data: userData } = await supabase.auth.getUser();
+      const user = userData?.user;
+      if (!user) throw new Error("Nicht angemeldet");
+
+      // Künstlerkonto abrufen
+      const { data: artistAccount, error: artistError } = await supabase
         .from("artist_accounts")
         .select("id")
         .eq("user_id", user.id)
-        .single()
+        .maybeSingle();
 
-      if (!artistAccount) throw new Error("Kein Künstlerkonto gefunden")
+      if (artistError || !artistAccount) throw new Error("Kein Künstlerkonto gefunden");
 
+      // Album erstellen
       const { error: insertError } = await supabase.from("albums").insert({
         artist_id: artistAccount.id,
         title: title,
         release_date: releaseDate || null,
-      })
+      });
 
-      if (insertError) throw insertError
+      if (insertError) throw insertError;
 
-      router.push("/artist")
-      router.refresh()
-    } catch (error) {
-      setError(error instanceof Error ? error.message : "Fehler beim Erstellen")
+      router.push("/artist");
+      router.refresh();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Fehler beim Erstellen");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-black p-6">
@@ -71,7 +74,9 @@ const supabase = supabaseBrowser
         <Card className="bg-neutral-900/40 border-neutral-800">
           <CardHeader>
             <CardTitle className="text-3xl text-white">Album erstellen</CardTitle>
-            <CardDescription className="text-neutral-400">Erstelle ein neues Album für deine Songs</CardDescription>
+            <CardDescription className="text-neutral-400">
+              Erstelle ein neues Album für deine Songs
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleCreate} className="space-y-6">
@@ -113,5 +118,6 @@ const supabase = supabaseBrowser
         </Card>
       </div>
     </div>
-  )
+  );
 }
+

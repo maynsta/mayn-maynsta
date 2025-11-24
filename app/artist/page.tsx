@@ -1,53 +1,45 @@
-import { supabaseServer } from "@/lib/supabase/supabaseServer"
-
-import { redirect } from "next/navigation"
-import Link from "next/link"
-import ArtistSongsList from "@/components/artist/ArtistSongsList"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Music, Plus, ArrowLeft } from "lucide-react"
+import { supabaseServer } from "@/lib/supabase/supabaseServer";
+import { redirect } from "next/navigation";
+import Link from "next/link";
+import ArtistSongsList from "@/components/artist/ArtistSongsList";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Music, Plus, ArrowLeft } from "lucide-react";
 
 export default async function ArtistDashboardPage() {
-  
-const supabase = supabaseServer()
+  const supabase = supabaseServer();
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  // User abrufen
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/auth/login");
 
-  if (!user) {
-    redirect("/auth/login")
-  }
-
-  // Check if user has artist account
+  // Künstlerkonto abrufen
   const { data: artistAccount } = await supabase
     .from("artist_accounts")
     .select("*")
     .eq("user_id", user.id)
-    .single()
+    .single();
 
-  if (!artistAccount) {
-    redirect("/artist/create")
-  }
+  if (!artistAccount) redirect("/artist/create");
 
-  // Fetch artist's songs
+  // Songs des Künstlers
   const { data: songs } = await supabase
     .from("songs")
     .select("*")
     .eq("artist_id", artistAccount.id)
-    .order("created_at", { ascending: false })
+    .order("created_at", { ascending: false });
 
-  // Fetch artist's albums
+  // Alben des Künstlers
   const { data: albums } = await supabase
     .from("albums")
     .select("*")
     .eq("artist_id", artistAccount.id)
-    .order("created_at", { ascending: false })
+    .order("created_at", { ascending: false });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-900 to-black p-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header mit Zurück-Button */}
+        {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Künstler-Dashboard</h1>
@@ -84,7 +76,7 @@ const supabase = supabaseServer()
           </Card>
         </div>
 
-        {/* Songs & Alben Verwaltung */}
+        {/* Songs & Alben */}
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Songs */}
           <Card className="bg-neutral-900/40 border-neutral-800">
@@ -100,9 +92,9 @@ const supabase = supabaseServer()
                 </Button>
               </Link>
             </CardHeader>
-<CardContent>
-  <ArtistSongsList songs={songs || []} />
-</CardContent>
+            <CardContent>
+              <ArtistSongsList songs={songs || []} />
+            </CardContent>
           </Card>
 
           {/* Alben */}
@@ -147,6 +139,6 @@ const supabase = supabaseServer()
         </div>
       </div>
     </div>
-  )
+  );
 }
 
