@@ -18,7 +18,8 @@ export default function ResetPasswordPage() {
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = supabase)
+    
+const supabase = supabaseBrowser
     setIsLoading(true)
     setError(null)
     setSuccess(false)

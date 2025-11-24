@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase/supabaseBrowser"
+
 import { SongCard } from "@/components/song-card"
 
 interface Song {

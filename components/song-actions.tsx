@@ -10,7 +10,8 @@ export default function SongActions({ song }: { song: any }) {
 
   const handleAddToLibrary = async () => {
     setLoading(true)
-    const supabase = supabase)
+    import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
+const supabase = supabaseBrowser()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return alert("Bitte einloggen!")
 
@@ -28,7 +29,8 @@ export default function SongActions({ song }: { song: any }) {
   const handleCreatePlaylist = async () => {
     const name = prompt("Name der neuen Playlist:")
     if (!name) return
-    const supabase = supabase)
+    import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
+const supabase = supabaseBrowser()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return alert("Bitte einloggen!")
 

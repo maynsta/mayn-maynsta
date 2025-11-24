@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase/supabaseBrowser";
+
 
 export default function CreatePlaylistPage() {
   const [name, setName] = useState("");

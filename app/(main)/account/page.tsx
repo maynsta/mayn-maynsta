@@ -1,27 +1,31 @@
-
+import { supabaseServer } from "@/lib/supabase/supabaseServer"
 import AccountSections from "./sections"
 
 export default async function AccountPage() {
-  const supabase = await supabase)
+  const supabase = supabaseServer()
 
+  // User abrufen
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
   if (!user) return null
 
+  // Profile abrufen
   const { data: profile } = await supabase
     .from("profiles")
     .select("*")
     .eq("id", user.id)
     .single()
 
+  // Parental Controls abrufen
   const { data: parentalControls } = await supabase
     .from("parental_controls")
     .select("*")
     .eq("user_id", user.id)
     .single()
 
+  // Artist Account abrufen
   const { data: artistAccount } = await supabase
     .from("artist_accounts")
     .select("id")

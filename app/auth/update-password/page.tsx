@@ -19,7 +19,8 @@ export default function UpdatePasswordPage() {
 
   const handleUpdatePassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = supabase)
+    
+const supabase = supabaseBrowser
     setIsLoading(true)
     setError(null)
 

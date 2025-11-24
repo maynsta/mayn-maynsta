@@ -1,0 +1,33 @@
+{
+  "version": 3,
+  "middleware": {
+    "/": {
+      "files": [
+        "server/edge/chunks/maynsta-one_mayn-maynsta_edge-wrapper_2acb74d8.js",
+        "server/edge/chunks/[root-of-the-server]__8efea653._.js",
+        "server/edge/chunks/turbopack-maynsta-one_mayn-maynsta_edge-wrapper_a421ff0a.js"
+      ],
+      "name": "middleware",
+      "page": "/",
+      "matchers": [
+        {
+          "regexp": "^/.*$",
+          "originalSource": "/:path*"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "i2LjEwtSrYtLTWc6AxgTQ",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "EDY8V/QBtc7VgRSSQA2ksR4uG4g1J+xAqdfVcOkNRRI=",
+        "__NEXT_PREVIEW_MODE_ID": "47b5a2a52fd7bbced643b7747c67d5b0",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "0eafcf81861ff5f80e56cceec68412951cc3fd501462569c1260c19276b2045c",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "8b3c56ee1ba66fc2f91d273268b9e4c212bed4553fc4143adfba892b5490136f"
+      }
+    }
+  },
+  "sortedMiddleware": [
+    "/"
+  ],
+  "functions": {}
+}

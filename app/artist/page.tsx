@@ -1,3 +1,4 @@
+import { supabaseServer } from "@/lib/supabase/supabaseServer"
 
 import { redirect } from "next/navigation"
 import Link from "next/link"
@@ -7,7 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Music, Plus, ArrowLeft } from "lucide-react"
 
 export default async function ArtistDashboardPage() {
-  const supabase = await supabase)
+  
+const supabase = supabaseServer()
 
   const {
     data: { user },

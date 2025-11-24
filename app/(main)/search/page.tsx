@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { SearchIcon, Play, MoreVertical } from "lucide-react";
-import { supabase } from "@/lib/supabase/supabaseBrowser";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { usePlayer } from "@/hooks/use-player";
 import {

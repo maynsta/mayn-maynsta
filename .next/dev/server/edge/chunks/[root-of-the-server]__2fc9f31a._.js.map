@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 16, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/maynsta-one/lib/supabase/middleware.ts"],"sourcesContent":["
-    {"offset": {"line": 61, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/maynsta-one/middleware.ts"],"sourcesContent":["// middleware.ts\nimport { updateSession } from \"@/lib/supabase/middleware\";\nimport type { NextRequest } from \"next/server\";\n\n// Diese Middleware sorgt für Supabase Session Sync (Cookie <-> Local Storage)\nexport async function middleware(request: NextRequest) {\n  return await updateSession(request);\n}\n\n// Nur auf \"geschützten\" Routen prüfen (z. B. /dashboard, /account)\nexport const config = {\n  matcher: [\"/dashboard/:path*\", \"/account/:path*\"],\n};\n"],"names":[],"mappings":"AAAA,gBAAgB;;;;;;;AAChB;;AAIO,eAAe,WAAW,OAAoB;IACnD,OAAO,MAAM,IAAA,wKAAa,EAAC;AAC7B;AAGO,MAAM,SAAS;IACpB,SAAS;QAAC;QAAqB;KAAkB;AACnD"}}]
-}

@@ -22,7 +22,8 @@ export default function CreateArtistAccountPage() {
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault()
-    const supabase = supabase)
+    
+const supabase = supabaseBrowser
     setIsLoading(true)
     setError(null)
 

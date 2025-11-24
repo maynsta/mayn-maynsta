@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase/supabaseBrowser";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { ListMusic, Plus } from "lucide-react";
 import CreatePlaylistButton from "@/components/CreatePlaylistButton";
