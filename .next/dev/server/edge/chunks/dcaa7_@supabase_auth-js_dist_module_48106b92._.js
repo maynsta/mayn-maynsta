@@ -1081,7 +1081,6 @@ class GoTrueAdminApi {
         };
         this.oauth = {
             listClients: this._listOAuthClients.bind(this),
-            createClient: this._createOAuthClient.bind(this),
             getClient: this._getOAuthClient.bind(this),
             updateClient: this._updateOAuthClient.bind(this),
             deleteClient: this._deleteOAuthClient.bind(this),

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { supabase } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/supabaseBrowser";
 
 interface Props {
   playlistName: string;

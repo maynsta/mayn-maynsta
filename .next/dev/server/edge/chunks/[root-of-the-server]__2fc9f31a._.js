@@ -18,7 +18,7 @@ __turbopack_context__.s([
     "updateSession",
     ()=>updateSession
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f$next$2f$dist$2f$esm$2f$api$2f$server$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/next/dist/esm/api/server.js [middleware-edge] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f$next$2f$dist$2f$esm$2f$server$2f$web$2f$exports$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/next/dist/esm/server/web/exports/index.js [middleware-edge] (ecmascript)");
 ;
@@ -29,7 +29,6 @@ async function updateSession(request) {
     if (!supabaseUrl || !supabaseKey) {
         throw new Error("Supabase URL or Key is not set in environment variables");
     }
-    const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseKey, {
         auth: {
             persistSession: false
         }

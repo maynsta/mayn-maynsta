@@ -4345,7 +4345,7 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$realtime$2d$js$2f$dist$2f$module$2f$RealtimeClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js [middleware-edge] (ecmascript)");
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/version.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/version.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 // Generated automatically during releases by scripts/update-version-files.ts
@@ -4360,7 +4360,7 @@ __turbopack_context__.s([
 ]);
 const version = '2.78.0'; //# sourceMappingURL=version.js.map
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/constants.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/constants.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -4375,7 +4375,7 @@ __turbopack_context__.s([
     "DEFAULT_REALTIME_OPTIONS",
     ()=>DEFAULT_REALTIME_OPTIONS
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$version$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/version.js [middleware-edge] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$version$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/version.js [middleware-edge] (ecmascript)");
 ;
 let JS_ENV = '';
 // @ts-ignore
@@ -4405,7 +4405,7 @@ const DEFAULT_AUTH_OPTIONS = {
 };
 const DEFAULT_REALTIME_OPTIONS = {}; //# sourceMappingURL=constants.js.map
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/fetch.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/fetch.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 // @ts-ignore
@@ -4455,7 +4455,7 @@ const fetchWithAuth = (supabaseKey, getAccessToken, customFetch)=>{
     };
 }; //# sourceMappingURL=fetch.js.map
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/helpers.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/helpers.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -4517,7 +4517,7 @@ function validateSupabaseUrl(supabaseUrl) {
     }
 } //# sourceMappingURL=helpers.js.map
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/SupabaseAuthClient.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/SupabaseAuthClient.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -4533,7 +4533,7 @@ class SupabaseAuthClient extends __TURBOPACK__imported__module__$5b$project$5d2f
     }
 } //# sourceMappingURL=SupabaseAuthClient.js.map
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/SupabaseClient.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/SupabaseClient.js [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
@@ -4545,10 +4545,10 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modul
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$realtime$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/realtime-js/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$realtime$2d$js$2f$dist$2f$module$2f$RealtimeClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$export__default__as__RealtimeClient$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js [middleware-edge] (ecmascript) <export default as RealtimeClient>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$storage$2d$js$2f$dist$2f$module$2f$StorageClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/storage-js/dist/module/StorageClient.js [middleware-edge] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$constants$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/constants.js [middleware-edge] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$fetch$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/fetch.js [middleware-edge] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$helpers$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/helpers.js [middleware-edge] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$SupabaseAuthClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/lib/SupabaseAuthClient.js [middleware-edge] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$constants$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/constants.js [middleware-edge] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$fetch$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/fetch.js [middleware-edge] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$helpers$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/helpers.js [middleware-edge] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$lib$2f$SupabaseAuthClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/lib/SupabaseAuthClient.js [middleware-edge] (ecmascript)");
 ;
 ;
 ;
@@ -4600,7 +4600,7 @@ class SupabaseClient {
             this.accessToken = settings.accessToken;
             this.auth = new Proxy({}, {
                 get: (_, prop)=>{
-                    throw new Error(`@supabase/supabase-js: Supabase Client is configured with the accessToken option, accessing supabase.auth.${String(prop)} is not possible`);
+                    throw new Error(`@supabase/ssr: Supabase Client is configured with the accessToken option, accessing supabase.auth.${String(prop)} is not possible`);
                 }
             });
         }
@@ -4759,14 +4759,12 @@ class SupabaseClient {
     }
 } //# sourceMappingURL=SupabaseClient.js.map
 }),
-"[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/index.js [middleware-edge] (ecmascript) <locals>", ((__turbopack_context__) => {
+"[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/index.js [middleware-edge] (ecmascript) <locals>", ((__turbopack_context__) => {
 "use strict";
 
 __turbopack_context__.s([
-    "createClient",
-    ()=>createClient
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$SupabaseClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/SupabaseClient.js [middleware-edge] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$SupabaseClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/SupabaseClient.js [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$auth$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/auth-js/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$postgrest$2d$js$2f$dist$2f$esm$2f$wrapper$2e$mjs__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/postgrest-js/dist/esm/wrapper.mjs [middleware-edge] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$realtime$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/realtime-js/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
@@ -4776,7 +4774,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modul
 ;
 ;
 ;
-const createClient = (supabaseUrl, supabaseKey, options)=>{
     return new __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$SupabaseClient$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__["default"](supabaseUrl, supabaseKey, options);
 };
 // Check for Node.js <= 18 deprecation
@@ -4801,7 +4798,7 @@ function shouldShowDeprecationWarning() {
     return majorVersion <= 18;
 }
 if (shouldShowDeprecationWarning()) {
-    console.warn(`⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/supabase-js. ` + `Please upgrade to Node.js 20 or later. ` + `For more information, visit: https://github.com/orgs/supabase/discussions/37217`);
+    console.warn(`⚠️  Node.js 18 and below are deprecated and will no longer be supported in future versions of @supabase/ssr. ` + `Please upgrade to Node.js 20 or later. ` + `For more information, visit: https://github.com/orgs/supabase/discussions/37217`);
 } //# sourceMappingURL=index.js.map
 }),
 "[project]/maynsta-one/node_modules/@supabase/auth-helpers-shared/dist/index.mjs [middleware-edge] (ecmascript)", ((__turbopack_context__) => {
@@ -4828,8 +4825,7 @@ __turbopack_context__.s([
     ()=>stringifySupabaseSession
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f$jose$2f$dist$2f$browser$2f$util$2f$base64url$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$export__$2a$__as__base64url$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/jose/dist/browser/util/base64url.js [middleware-edge] (ecmascript) <export * as base64url>");
-// src/createClient.ts
-var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/supabase-js/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/maynsta-one/node_modules/@supabase/ssr/dist/module/index.js [middleware-edge] (ecmascript) <locals>");
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -5184,7 +5180,6 @@ var BrowserCookieAuthStorageAdapter = class extends CookieAuthStorageAdapter {
 function createSupabaseClient(supabaseUrl, supabaseKey, options) {
     var _a;
     const browser = isBrowser();
-    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$middleware$2d$edge$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseKey, {
         ...options,
         auth: {
             flowType: "pkce",
@@ -5444,7 +5439,6 @@ var __toCommonJS = (mod)=>__copyProps(__defProp({}, "__esModule", {
 var src_exports = {};
 __export(src_exports, {
     createBrowserSupabaseClient: ()=>createBrowserSupabaseClient,
-    createClientComponentClient: ()=>createClientComponentClient,
     createMiddlewareClient: ()=>createMiddlewareClient,
     createMiddlewareSupabaseClient: ()=>createMiddlewareSupabaseClient,
     createPagesBrowserClient: ()=>createPagesBrowserClient,
@@ -5458,7 +5452,6 @@ module.exports = __toCommonJS(src_exports);
 // src/clientComponentClient.ts
 var import_auth_helpers_shared = __turbopack_context__.r("[project]/maynsta-one/node_modules/@supabase/auth-helpers-shared/dist/index.mjs [middleware-edge] (ecmascript)");
 var supabase;
-function createClientComponentClient({ supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL, supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY, options, cookieOptions, isSingleton = true } = {}) {
     if (!supabaseUrl || !supabaseKey) {
         throw new Error("either NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY env variables or supabaseUrl and supabaseKey are required!");
     }
@@ -5487,7 +5480,6 @@ function createClientComponentClient({ supabaseUrl = process.env.NEXT_PUBLIC_SUP
     return createNewClient();
 }
 // src/pagesBrowserClient.ts
-var createPagesBrowserClient = createClientComponentClient;
 // src/pagesServerClient.ts
 var import_auth_helpers_shared2 = __turbopack_context__.r("[project]/maynsta-one/node_modules/@supabase/auth-helpers-shared/dist/index.mjs [middleware-edge] (ecmascript)");
 var import_set_cookie_parser = __turbopack_context__.r("[project]/maynsta-one/node_modules/set-cookie-parser/lib/set-cookie.js [middleware-edge] (ecmascript)");
@@ -5711,7 +5703,6 @@ function createMiddlewareSupabaseClient(context, { supabaseUrl = process.env.NEX
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
     createBrowserSupabaseClient,
-    createClientComponentClient,
     createMiddlewareClient,
     createMiddlewareSupabaseClient,
     createPagesBrowserClient,

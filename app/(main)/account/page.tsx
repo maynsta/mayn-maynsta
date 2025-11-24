@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server"
+
 import AccountSections from "./sections"
 
 export default async function AccountPage() {

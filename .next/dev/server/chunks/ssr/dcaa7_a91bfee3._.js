@@ -2179,7 +2179,6 @@ function createHeadInsertionTransformStream(insert) {
         }
     });
 }
-function createClientResumeScriptInsertionTransformStream() {
     const segmentPath = '/_full';
     const cacheBustingHeader = (0, __TURBOPACK__imported__module__$5b$project$5d2f$maynsta$2d$one$2f$node_modules$2f$next$2f$dist$2f$esm$2f$shared$2f$lib$2f$router$2f$utils$2f$cache$2d$busting$2d$search$2d$param$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["computeCacheBustingSearchParam"])('1', '/_full', undefined, undefined //       headers[NEXT_URL]
     );
@@ -2472,7 +2471,6 @@ async function continueStaticFallbackPrerender(prerenderStream, { inlinedDataStr
     .pipeThrough(createBufferedTransformStream()) // Add build id comment to start of the HTML document (in export mode)
     .pipeThrough(createPrefetchCommentStream(isBuildTimePrerendering, buildId)) // Insert generated tags to head
     .pipeThrough(createHeadInsertionTransformStream(getServerInsertedHTML)) // Insert the client resume script into the head
-    .pipeThrough(createClientResumeScriptInsertionTransformStream()) // Transform metadata
     .pipeThrough(createMetadataTransformStream(getServerInsertedMetadata)) // Insert the inlined data (Flight data, form state, etc.) stream into the HTML
     .pipeThrough(createFlightDataInjectionTransformStream(inlinedDataStream, true)) // Close tags should always be deferred to the end
     .pipeThrough(createMoveSuffixStream());
