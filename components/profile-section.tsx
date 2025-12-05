@@ -4,6 +4,7 @@ import { useState } from "react"
 import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { supabase } from "@/lib/supabase";
 
 export function ProfileSection({ user, profile }: { user: any; profile: any }) {
   const [fullName, setFullName] = useState(profile?.full_name || "")

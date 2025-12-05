@@ -1,10 +1,6 @@
 {
-  "/(main)/account/page": "/account",
-  "/(main)/home/page": "/home",
-  "/(main)/library/page": "/library",
-  "/(main)/search/page": "/search",
-  "/_global-error/page": "/_global-error",
   "/_not-found/page": "/_not-found",
+  "/_global-error/page": "/_global-error",
   "/api/library/route": "/api/library",
   "/artist/album/create/page": "/artist/album/create",
   "/artist/create/page": "/artist/create",
@@ -16,5 +12,9 @@
   "/auth/update-password/page": "/auth/update-password",
   "/auth/verify-email/page": "/auth/verify-email",
   "/library/[id]/page": "/library/[id]",
-  "/library/create/page": "/library/create"
+  "/library/create/page": "/library/create",
+  "/(main)/account/page": "/account",
+  "/(main)/home/page": "/home",
+  "/(main)/search/page": "/search",
+  "/(main)/library/page": "/library"
 }

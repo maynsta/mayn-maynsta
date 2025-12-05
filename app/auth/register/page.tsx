@@ -1,4 +1,5 @@
 "use client"
+import { supabase } from "@/lib/supabase";
 
 import type React from "react"
 import { useState } from "react"
@@ -11,7 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 
-import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser" // ✅ Wichtig: supabaseBrowser importieren
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser" // ✅ Wichtig: supabase importieren
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("")
@@ -55,7 +56,7 @@ export default function RegisterPage() {
     }
 
     try {
-      const { error } = await supabaseBrowser.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -80,7 +81,7 @@ export default function RegisterPage() {
     setError(null)
 
     try {
-      const { error } = await supabaseBrowser.auth.signInWithOAuth({
+      const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
           redirectTo:

@@ -1,4 +1,6 @@
-"use client";
+"use client"
+import { supabase } from "@/lib/supabase";
+;
 
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
@@ -14,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"; // ✅ Supabase Import
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
 
 interface Song {
   id: string;
@@ -48,9 +50,9 @@ export default function SearchPage() {
       setIsLoading(true);
 
       try {
-        const { data: { user } } = await supabaseBrowser.auth.getUser();
+        const { data: { user } } = await supabase.auth.getUser();
 
-        let query = supabaseBrowser.from("songs").select("*").ilike("title", `%${searchQuery}%`);
+        let query = supabase.from("songs").select("*").ilike("title", `%${searchQuery}%`);
         query = user
           ? query.or(`is_published.eq.true,artist_id.eq.${user.id}`)
           : query.eq("is_published", true);
@@ -77,10 +79,10 @@ export default function SearchPage() {
   useEffect(() => {
     const loadPlaylists = async () => {
       try {
-        const { data: { user } } = await supabaseBrowser.auth.getUser();
+        const { data: { user } } = await supabase.auth.getUser();
         if (!user) return;
 
-        const { data } = await supabaseBrowser.from("playlists").select("*").eq("user_id", user.id);
+        const { data } = await supabase.from("playlists").select("*").eq("user_id", user.id);
         setPlaylists(data || []);
       } catch (err) {
         console.error("Fehler beim Laden der Playlists:", err);
@@ -91,10 +93,10 @@ export default function SearchPage() {
 
   // 🎵 Add to Library
   const handleAddToLibrary = async (song: Song) => {
-    const { data: { user } } = await supabaseBrowser.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
     if (!user) return toast.error("Bitte einloggen!");
 
-    const { error } = await supabaseBrowser.from("library").upsert({
+    const { error } = await supabase.from("library").upsert({
       user_id: user.id,
       song_id: song.id,
     });
@@ -105,7 +107,7 @@ export default function SearchPage() {
 
   // ➕ Add to Playlist
   const handleAddToPlaylist = async (song: Song, playlistId: string) => {
-    const { error } = await supabaseBrowser.from("playlist_songs").upsert({
+    const { error } = await supabase.from("playlist_songs").upsert({
       playlist_id: playlistId,
       song_id: song.id,
     });
@@ -151,7 +153,12 @@ export default function SearchPage() {
 
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => setSong(song)}
+                    onClick={() =>
+                      setSong({
+                        ...song,
+                        audio_url: song.audio_url ?? "", // ✅ TypeScript fix
+                      })
+                    }
                     className="p-2 rounded-full bg-green-600 hover:bg-green-500 transition"
                   >
                     <Play className="w-5 h-5 text-white" />

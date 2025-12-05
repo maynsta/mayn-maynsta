@@ -1,4 +1,5 @@
 "use client"
+import { supabase } from "@/lib/supabase";
 
 import { useEffect, useState } from "react"
 import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"
@@ -23,7 +24,7 @@ export default function HomePage() {
         const {
           data: { user },
           error: userError,
-        } = await supabaseBrowser.auth.getUser()
+        } = await supabase.auth.getUser()
         if (userError || !user) {
           console.warn("Kein eingeloggter User:", userError?.message)
           setRecentSongs([])
@@ -31,7 +32,7 @@ export default function HomePage() {
         }
 
         // Zuletzt gespielte Songs laden (max. 5)
-        const { data, error } = await supabaseBrowser
+        const { data, error } = await supabase
           .from("recently_played")
           .select(`
             songs (
@@ -88,7 +89,7 @@ export default function HomePage() {
                 <SongCard
                   key={song.id}
                   title={song.title}
-                  cover={song.cover_image_url ?? undefined}
+                  imageUrl={song.cover_image_url ?? undefined}
                   artist={song.artist_id ?? undefined}
                   audio={song.audio_url ?? undefined}
                 />

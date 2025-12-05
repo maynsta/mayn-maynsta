@@ -1,4 +1,5 @@
-"use client";
+"use client"
+import { supabase } from "@/lib/supabase";
 
 import type React from "react";
 
@@ -28,7 +29,6 @@ export default function CreateArtistAccountPage() {
     setError(null);
 
     try {
-      const supabase = supabaseBrowser;
 
       // User abrufen
       const { data: userData } = await supabase.auth.getUser();

@@ -1,4 +1,6 @@
 "use client"
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
+const supabase = supabaseBrowser();
 
 import type React from "react"
 

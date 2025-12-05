@@ -1,4 +1,5 @@
-"use client";
+"use client"
+import { supabase } from "@/lib/supabase";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -93,7 +94,7 @@ export default function PlaylistDetailPage() {
                   <img
                     src={song.cover_image_url}
                     alt={song.title}
-                    className="w-12 h-12 object-cover rounded"
+                    className="w-12 h-12 object-imageUrl rounded"
                   />
                 ) : (
                   <div className="w-12 h-12 rounded bg-gray-300 flex items-center justify-center">

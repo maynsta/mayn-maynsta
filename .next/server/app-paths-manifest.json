@@ -1,10 +1,6 @@
 {
-  "/(main)/account/page": "app/(main)/account/page.js",
-  "/(main)/home/page": "app/(main)/home/page.js",
-  "/(main)/library/page": "app/(main)/library/page.js",
-  "/(main)/search/page": "app/(main)/search/page.js",
-  "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
+  "/_global-error/page": "app/_global-error/page.js",
   "/api/library/route": "app/api/library/route.js",
   "/artist/album/create/page": "app/artist/album/create/page.js",
   "/artist/create/page": "app/artist/create/page.js",
@@ -16,5 +12,9 @@
   "/auth/update-password/page": "app/auth/update-password/page.js",
   "/auth/verify-email/page": "app/auth/verify-email/page.js",
   "/library/[id]/page": "app/library/[id]/page.js",
-  "/library/create/page": "app/library/create/page.js"
+  "/library/create/page": "app/library/create/page.js",
+  "/(main)/account/page": "app/(main)/account/page.js",
+  "/(main)/home/page": "app/(main)/home/page.js",
+  "/(main)/search/page": "app/(main)/search/page.js",
+  "/(main)/library/page": "app/(main)/library/page.js"
 }

@@ -1,7 +1,8 @@
 "use client"
+import { supabase } from "@/lib/supabase";
 
 import { useEffect, useState } from "react"
-
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"
 import { SongCard } from "@/components/song-card"
 
 interface Song {
@@ -18,12 +19,11 @@ export default function HomePage() {
 
   useEffect(() => {
     const loadRecent = async () => {
+      const supabase = supabaseBrowser()  // ✅ Supabase hier initialisieren
       try {
-        // Aktuellen User holen
         const { data: { user }, error: userError } = await supabase.auth.getUser()
         if (userError || !user) return
 
-        // Zuletzt gespielte Songs laden (die letzten 5)
         const { data, error } = await supabase
           .from("recently_played")
           .select(`
@@ -41,7 +41,6 @@ export default function HomePage() {
 
         if (error) throw error
 
-        // Songs extrahieren
         const extracted = data?.map((item: any) => item.songs).filter((s: any) => s !== null)
         setRecentSongs(extracted || [])
       } catch (err: any) {
@@ -59,7 +58,6 @@ export default function HomePage() {
       <div className="bg-gradient-to-b from-neutral-900 to-black p-6 space-y-8">
         <h1 className="text-4xl font-bold text-white">Home</h1>
 
-        {/* Neu Section */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Neu</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
@@ -68,7 +66,6 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Zuletzt gehört Section */}
         <section>
           <h2 className="text-2xl font-bold text-white mb-4">Zuletzt gehört</h2>
           {loadingRecent ? (
@@ -78,13 +75,14 @@ export default function HomePage() {
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
               {recentSongs.map((song) => (
-                <SongCard
-                  key={song.id}
-                  title={song.title}
-                  cover={song.cover_image_url}
-                  artist={song.artist_id} // optional
-                  audio={song.audio_url} // optional
-                />
+<SongCard
+  key={song.id}
+  title={song.title}
+  imageUrl={song.cover_image_url ?? undefined}
+  artist={song.artist_id ?? undefined}   // ✅ Null wird zu undefined
+  audio={song.audio_url ?? undefined}
+/>
+
               ))}
             </div>
           )}

@@ -1,18 +1,22 @@
+// app/components/song-card.tsx
 import { Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { supabase } from "@/lib/supabase";
 
 interface SongCardProps {
   title: string
   artist?: string
   imageUrl?: string
+  audio?: string   // <-- hinzufügen
 }
 
-export function SongCard({ title, artist, imageUrl }: SongCardProps) {
+export function SongCard({ title, artist, imageUrl, audio }: SongCardProps) {
+  // Du kannst audio z.B. für einen Player-Button oder onClick verwenden
   return (
     <div className="group relative bg-neutral-900/40 hover:bg-neutral-800/40 rounded-md p-4 transition cursor-pointer">
       <div className="relative aspect-square mb-4 rounded-md overflow-hidden bg-neutral-800">
         {imageUrl ? (
-          <img src={imageUrl || "/placeholder.svg"} alt={title} className="object-cover w-full h-full" />
+          <img src={imageUrl} alt={title} className="object-cover w-full h-full" />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <svg className="w-16 h-16 text-neutral-600" fill="currentColor" viewBox="0 0 24 24">
@@ -20,12 +24,7 @@ export function SongCard({ title, artist, imageUrl }: SongCardProps) {
             </svg>
           </div>
         )}
-        <Button
-          size="icon"
-          className="absolute bottom-2 right-2 h-12 w-12 rounded-full bg-primary hover:bg-primary/90 opacity-0 group-hover:opacity-100 transition shadow-lg hover:scale-105"
-        >
-          <Play className="h-5 w-5 fill-current text-black" />
-        </Button>
+        {/* Hier kannst du optional einen Play-Button mit audio implementieren */}
       </div>
       <div>
         <p className="font-semibold text-white truncate mb-1">{title}</p>
@@ -34,3 +33,5 @@ export function SongCard({ title, artist, imageUrl }: SongCardProps) {
     </div>
   )
 }
+
+

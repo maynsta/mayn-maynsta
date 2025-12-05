@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
+import { supabase } from '@/lib/supabase'
 
 interface Props {
   playlistName: string;

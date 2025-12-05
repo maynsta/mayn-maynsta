@@ -1,8 +1,10 @@
+import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
 "use client"
 
 import { useState } from "react"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { MoreVertical } from "lucide-react"
+import { supabase } from "@/lib/supabase";
 
 
 export default function SongActions({ song }: { song: any }) {
@@ -10,7 +12,6 @@ export default function SongActions({ song }: { song: any }) {
 
   const handleAddToLibrary = async () => {
     setLoading(true)
-    import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
 const supabase = supabaseBrowser()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return alert("Bitte einloggen!")
@@ -29,7 +30,6 @@ const supabase = supabaseBrowser()
   const handleCreatePlaylist = async () => {
     const name = prompt("Name der neuen Playlist:")
     if (!name) return
-    import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser";
 const supabase = supabaseBrowser()
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return alert("Bitte einloggen!")

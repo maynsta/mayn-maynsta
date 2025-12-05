@@ -1,3 +1,4 @@
+import { supabase } from "@/lib/supabase";
 import { supabaseServer } from "@/lib/supabase/supabaseServer";
 import { redirect } from "next/navigation";
 import Link from "next/link";

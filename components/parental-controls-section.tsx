@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Switch } from "@/components/ui/switch"
 import { supabaseBrowser } from "@/lib/supabase/supabaseBrowser"
 import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabase";
 
 interface ParentalControlsSectionProps {
   userId: string

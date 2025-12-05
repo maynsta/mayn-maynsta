@@ -1,3 +1,4 @@
+import { supabase } from "@/lib/supabase";
 import type React from "react"
 import { Sidebar } from "@/components/sidebar"
 import { Player } from "@/components/player"

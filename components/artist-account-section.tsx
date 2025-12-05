@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Music2 } from "lucide-react"
 import Link from "next/link"
+import { supabase } from "@/lib/supabase";
 
 interface ArtistAccountSectionProps {
   hasArtistAccount: boolean
